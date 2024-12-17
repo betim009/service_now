@@ -1,9 +1,13 @@
 var grComputer = new GlideRecord('cmdb_ci_computer');
-grComputer.addQuery('manufacturer', 'lenovo');
+grComputer.addQuery('manufacturer.name', 'lenovo'); // Assumindo que manufacturer seja uma referência a outra tabela
 grComputer.query();
 
-while(grComputer.next()){
-    gs.print(grComputer.getDisplayValue("manufacturer"));
+if (grComputer.hasNext()) {
+    while (grComputer.next()) {
+        gs.print(grComputer.getDisplayValue("manufacturer"));
+    }
+} else {
+    gs.print("Nenhum registro encontrado");
 }
 
 
@@ -11,11 +15,10 @@ while(grComputer.next()){
 
 
 var grComputer = new GlideRecord('cmdb_ci_computer');
-grComputer.addQuery('manufacturer', 'lenovo');
 grComputer.query();
 
 if (grComputer.hasNext()) {
-    while(grComputer.next()){
+    while (grComputer.next()) {
         gs.print(grComputer.getDisplayValue("manufacturer"));
     }
 } else {
